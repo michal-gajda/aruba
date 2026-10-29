@@ -12,4 +12,8 @@
   <Folder Name="/src/WebApi/">
     <Project Path="src/WebApi/Aruba.WebApi.csproj" />
   </Folder>
+  <Folder Name="/tests/" />
+  <Folder Name="/tests/Application.FunctionalTests/">
+    <Project Path="tests/Application.FunctionalTests/Aruba.Application.FunctionalTests.csproj" />
+  </Folder>
 </Solution>

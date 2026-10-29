@@ -1,5 +1,8 @@
 namespace Aruba.Application.FunctionalTests.Builders;
 
+using Aruba.Application.Commands;
+using Aruba.Domain.Types;
+
 public sealed class AddBookDefault
 {
     private BookId id = new BookId(Guid.NewGuid());

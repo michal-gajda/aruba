@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Using Include="MediatR" />
+    <Using Include="Microsoft.Extensions.DependencyInjection" />
     <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
     <Using Include="Shouldly" />
   </ItemGroup>

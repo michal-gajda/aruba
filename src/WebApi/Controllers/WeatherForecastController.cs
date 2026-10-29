@@ -1,14 +1,23 @@
-using Microsoft.AspNetCore.Mvc;
-
 namespace Aruba.WebApi.Controllers;
+
+using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
 [Route("[controller]")]
-public class WeatherForecastController : ControllerBase
+public sealed class WeatherForecastController : ControllerBase
 {
     private static readonly string[] Summaries =
     [
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+        "Balmy",
+        "Bracing",
+        "Chilly",
+        "Cool",
+        "Freezing",
+        "Hot",
+        "Mild",
+        "Scorching",
+        "Sweltering",
+        "Warm",
     ];
 
     [HttpGet(Name = "GetWeatherForecast")]
@@ -18,7 +27,7 @@ public class WeatherForecastController : ControllerBase
         {
             Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
             TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+            Summary = Summaries[Random.Shared.Next(Summaries.Length)],
         })
         .ToArray();
     }

@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Using Include="Aruba.Domain.Types" />
+    <Using Include="MediatR" />
   </ItemGroup>
 
   <ItemGroup>

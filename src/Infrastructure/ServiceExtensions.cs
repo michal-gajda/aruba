@@ -1,9 +1,15 @@
 ﻿namespace Aruba.Infrastructure;
 
+using Aruba.Domain.Entities;
+using Aruba.Domain.Interfaces;
+using Aruba.Infrastructure.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Concurrent;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
+[ExcludeFromCodeCoverage]
 public static class ServiceExtensions
 {
     extension(IServiceCollection services)
@@ -13,6 +19,9 @@ public static class ServiceExtensions
             var assembly = Assembly.GetExecutingAssembly();
 
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(assembly));
+
+            var dictionary = new ConcurrentDictionary<BookId, BookEntity>();
+            services.AddSingleton<IBookRepository>(new BookRepository(dictionary));
 
             return services;
         }

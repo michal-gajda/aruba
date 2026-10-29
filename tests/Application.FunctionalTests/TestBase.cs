@@ -1,7 +1,8 @@
 ﻿namespace Aruba.Application.FunctionalTests;
 
-using Microsoft.Extensions.DependencyInjection;
+using Aruba.Infrastructure;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 public abstract class TestBase
 {

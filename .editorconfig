@@ -1,0 +1,10 @@
+root = true
+
+[*.cs]
+csharp_style_namespace_declarations = file_scoped:error
+csharp_using_directive_placement = inside_namespace:error
+csharp_style_prefer_primary_constructors = false
+resharper_convert_to_primary_constructor_highlighting = none
+dotnet_diagnostic.IDE0065.severity = error
+dotnet_diagnostic.IDE0161.severity = error
+dotnet_diagnostic.IDE0290.severity = none

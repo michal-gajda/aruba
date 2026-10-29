@@ -1,6 +1,6 @@
 ﻿namespace Aruba.Domain.Types;
 
-public readonly struct BookId
+public readonly record struct BookId
 {
     public BookId(Guid value) => this.Value = value;
 
