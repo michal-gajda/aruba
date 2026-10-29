@@ -10,7 +10,7 @@ public sealed class UpdateBookTests : TestBase
     [TestMethod]
     public async Task Should_Rename_Exists_Book()
     {
-        var mediator = this.serviceProvider.GetRequiredService<IMediator>();
+        var mediator = this.ServiceProvider.GetRequiredService<IMediator>();
         var addBook = new AddBookDefault()
             .Build();
 
@@ -25,7 +25,7 @@ public sealed class UpdateBookTests : TestBase
 
         await mediator.Send(command);
 
-        var repository = this.serviceProvider.GetRequiredService<IBookRepository>();
+        var repository = this.ServiceProvider.GetRequiredService<IBookRepository>();
         var entity = await repository.LoadAsync(command.Id);
 
         entity.ShouldNotBeNull();

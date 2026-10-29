@@ -9,13 +9,13 @@ public sealed class AddBookTests : TestBase
     [TestMethod]
     public async Task Should_Save_Book()
     {
-        var mediator = this.serviceProvider.GetRequiredService<IMediator>();
+        var mediator = this.ServiceProvider.GetRequiredService<IMediator>();
         var command = new AddBookDefault()
             .Build();
 
         await mediator.Send(command, CancellationToken.None);
 
-        var repository = this.serviceProvider.GetRequiredService<IBookRepository>();
+        var repository = this.ServiceProvider.GetRequiredService<IBookRepository>();
         var entity = await repository.LoadAsync(command.Id, CancellationToken.None);
 
         entity.ShouldNotBeNull();

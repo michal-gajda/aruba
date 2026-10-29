@@ -6,12 +6,13 @@ using Microsoft.Extensions.DependencyInjection;
 
 public abstract class TestBase
 {
-    protected readonly ServiceProvider serviceProvider;
+    protected readonly ServiceProvider ServiceProvider;
 
     protected TestBase()
     {
         var collection = new Dictionary<string, string?>
         {
+            // Add any necessary configuration settings here
         };
 
         var configuration = new ConfigurationBuilder()
@@ -25,6 +26,6 @@ public abstract class TestBase
         services.AddApplication();
         services.AddInfrastructure(configuration);
 
-        this.serviceProvider = services.BuildServiceProvider();
+        this.ServiceProvider = services.BuildServiceProvider();
     }
 }
