@@ -6,10 +6,8 @@ using Aruba.Infrastructure.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Concurrent;
-using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
-[ExcludeFromCodeCoverage]
 public static class ServiceExtensions
 {
     extension(IServiceCollection services)
