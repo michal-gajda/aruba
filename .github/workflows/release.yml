@@ -29,7 +29,7 @@ jobs:
         run: dotnet publish src/WebApi/Aruba.WebApi.csproj --configuration Release --no-restore --output ./artifacts
 
       - name: Upload release artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: aruba-release-${{ github.sha }}
           path: ./artifacts
