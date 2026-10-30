@@ -28,7 +28,7 @@ if ($ExpectedTag) {
     if ($ExpectedTag -cnotmatch '^v\d+\.\d+\.\d+$' -or $ExpectedTag -cne "v$version") {
         throw "Release tag $ExpectedTag does not match the stable MSI version v$version."
     }
-    if ($metadata.ProductVersion -notmatch ('^' + [regex]::Escape($version) + '(\+|$)')) {
+    if ($metadata.ProductVersion -notmatch ('^' + [regex]::Escape($version) + '(?:\.\d+)?(\+|$)')) {
         throw 'Only stable application builds can be published as a GitHub Release.'
     }
 }
