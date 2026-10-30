@@ -1,8 +1,8 @@
 ﻿namespace Aruba.Application.CommandHandlers;
 
-using Aruba.Domain.Interfaces;
 using Aruba.Application.Commands;
 using Aruba.Domain.Entities;
+using Aruba.Domain.Interfaces;
 
 internal sealed class AddBookHandler(IBookRepository repository) : IRequestHandler<AddBook>
 {

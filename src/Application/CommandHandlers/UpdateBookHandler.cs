@@ -1,7 +1,7 @@
 namespace Aruba.Application.CommandHandlers;
 
-using Aruba.Domain.Interfaces;
 using Aruba.Application.Commands;
+using Aruba.Domain.Interfaces;
 
 internal sealed class UpdateBookHandler(IBookRepository repository) : IRequestHandler<UpdateBook>
 {

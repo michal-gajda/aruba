@@ -1,0 +1,10 @@
+<Project>
+  <ItemGroup Condition="'$(MSBuildProjectName)' != 'Aruba.CodeStyle' and '$(MSBuildProjectName)' != 'Aruba.CodeStyle.CodeFixes'">
+    <ProjectReference Include="$(MSBuildThisFileDirectory)src/CodeStyle/Aruba.CodeStyle.csproj"
+                      OutputItemType="Analyzer"
+                      ReferenceOutputAssembly="false" />
+    <ProjectReference Include="$(MSBuildThisFileDirectory)src/CodeStyle/CodeFixes/Aruba.CodeStyle.CodeFixes.csproj"
+                      OutputItemType="Analyzer"
+                      ReferenceOutputAssembly="false" />
+  </ItemGroup>
+</Project>

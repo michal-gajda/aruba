@@ -1,7 +1,7 @@
 namespace Aruba.WebApi;
 
-using Aruba.Application;
-using Aruba.Infrastructure;
+using Application;
+using Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 

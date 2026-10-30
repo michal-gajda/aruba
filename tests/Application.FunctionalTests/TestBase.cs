@@ -1,6 +1,7 @@
 ﻿namespace Aruba.Application.FunctionalTests;
 
 using Aruba.Infrastructure;
+
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

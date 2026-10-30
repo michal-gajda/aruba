@@ -1,6 +1,7 @@
 ﻿namespace Aruba.Infrastructure.Services;
 
 using System.Collections.Concurrent;
+
 using Aruba.Domain.Entities;
 using Aruba.Domain.Interfaces;
 

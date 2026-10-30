@@ -1,12 +1,14 @@
 ﻿namespace Aruba.Infrastructure;
 
+using System.Collections.Concurrent;
+using System.Reflection;
+
 using Aruba.Domain.Entities;
 using Aruba.Domain.Interfaces;
 using Aruba.Infrastructure.Services;
+
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Collections.Concurrent;
-using System.Reflection;
 
 public static class ServiceExtensions
 {

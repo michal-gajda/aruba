@@ -1,7 +1,7 @@
 ﻿namespace Aruba.Application.FunctionalTests;
 
-using Aruba.Domain.Interfaces;
 using Aruba.Application.FunctionalTests.Builders;
+using Aruba.Domain.Interfaces;
 
 [TestClass]
 public sealed class AddBookTests : TestBase
