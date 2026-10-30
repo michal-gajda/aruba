@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - develop
       - 'release/**'
     tags:
       - 'v*'
@@ -15,11 +16,18 @@ on:
         type: string
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
+    env:
+      WIX_EULA_ACCEPTED: wix7
+    permissions:
+      contents: write
+    defaults:
+      run:
+        shell: pwsh
     steps:
       - name: Check out repository
         uses: actions/checkout@v7
@@ -32,17 +40,31 @@ jobs:
         with:
           dotnet-version: 10.0.x
 
-      - name: Restore dependencies
-        run: dotnet restore src/WebApi/Aruba.WebApi.csproj
+      - name: Validate release tag
+        env:
+          RELEASE_TAG: ${{ inputs.release_tag || (startsWith(github.ref, 'refs/tags/') && github.ref_name) || '' }}
+        run: |
+          if ($env:RELEASE_TAG -and $env:RELEASE_TAG -cnotmatch '^v\d+\.\d+\.\d+$') {
+            throw 'Only stable vMajor.Minor.Patch tags may publish a release.'
+          }
 
-      - name: Publish Web API
-        run: dotnet publish src/WebApi/Aruba.WebApi.csproj --configuration Release --no-restore --output ./artifacts
+      - name: Set up WiX
+        run: dotnet tool install --global wix --version 7.0.1
+
+      - name: Run tests
+        run: dotnet test Aruba.slnx --configuration Release
+
+      - name: Build Windows installer
+        env:
+          RELEASE_TAG: ${{ inputs.release_tag || (startsWith(github.ref, 'refs/tags/') && github.ref_name) || '' }}
+        run: ./installer/Build-Installer.ps1 -ExpectedTag $env:RELEASE_TAG
 
       - name: Upload release artifact
         uses: actions/upload-artifact@v7
         with:
           name: aruba-release-${{ inputs.release_tag || github.sha }}
-          path: ./artifacts
+          path: ./artifacts/installer/*.msi
+          if-no-files-found: error
 
       - name: Publish GitHub Release
         if: startsWith(github.ref, 'refs/tags/') || (github.event_name == 'workflow_dispatch' && inputs.release_tag != '')
@@ -51,4 +73,5 @@ jobs:
           tag_name: ${{ inputs.release_tag || github.ref_name }}
           name: ${{ inputs.release_tag || github.ref_name }}
           generate_release_notes: true
-          files: ./artifacts/*
+          fail_on_unmatched_files: true
+          files: ./artifacts/installer/*.msi

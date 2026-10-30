@@ -1,0 +1,25 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Package Name="Aruba" Manufacturer="Aruba" Version="$(var.ProductVersion)"
+           UpgradeCode="C7C6167E-EA95-4BE8-A5BA-197F8019FBCA" Scope="perMachine">
+    <MajorUpgrade DowngradeErrorMessage="A newer version of Aruba is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+    <StandardDirectory Id="ProgramFiles64Folder">
+      <Directory Id="INSTALLFOLDER" Name="Aruba" />
+    </StandardDirectory>
+    <Feature Id="Application" Title="Aruba" Level="1">
+      <Component Directory="INSTALLFOLDER" Id="ServiceExecutable" Guid="6FDF89F3-2118-4670-B022-3027989691AA">
+        <File Id="ServiceExecutableFile" Source="$(var.PublishDir)\Aruba.WebApi.exe" KeyPath="yes" />
+        <ServiceInstall Id="InstallService" Name="Aruba" DisplayName="Aruba"
+                        Description="Aruba Web API" Type="ownProcess" Start="auto"
+                        ErrorControl="normal" Account="NT AUTHORITY\LocalService"
+                        Arguments="--contentRoot &quot;[INSTALLFOLDER].&quot; --urls http://localhost:5000" />
+        <ServiceControl Id="ControlService" Name="Aruba" Start="install" Stop="both" Remove="uninstall" Wait="yes" />
+      </Component>
+      <Files Directory="INSTALLFOLDER" Include="$(var.PublishDir)\**">
+        <Exclude Files="$(var.PublishDir)\Aruba.WebApi.exe" />
+        <Exclude Files="$(var.PublishDir)\appsettings.Development.json" />
+        <Exclude Files="$(var.PublishDir)\**.pdb" />
+      </Files>
+    </Feature>
+  </Package>
+</Wix>
