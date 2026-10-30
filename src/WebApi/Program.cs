@@ -2,13 +2,23 @@ namespace Aruba.WebApi;
 
 using Aruba.Application;
 using Aruba.Infrastructure;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 public static class Program
 {
     public static async Task<int> Main(string[] args)
     {
-        var builder = WebApplication.CreateBuilder(args);
-        builder.Host.UseWindowsService(options => options.ServiceName = "Aruba");
+        var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+        {
+            Args = args,
+            ContentRootPath = AppContext.BaseDirectory,
+        });
+
+        builder.Services.AddWindowsService(options =>
+        {
+            options.ServiceName = "Aruba";
+        });
 
         builder.Services.AddApplication();
         builder.Services.AddInfrastructure(builder.Configuration);
