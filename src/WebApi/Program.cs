@@ -8,6 +8,7 @@ public static class Program
     public static async Task<int> Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+        builder.Host.UseWindowsService(options => options.ServiceName = "Aruba");
 
         builder.Services.AddApplication();
         builder.Services.AddInfrastructure(builder.Configuration);
