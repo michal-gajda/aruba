@@ -2,13 +2,14 @@
 
 using System.Reflection;
 
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 public static class ServiceExtensions
 {
     extension(IServiceCollection services)
     {
-        public IServiceCollection AddApplication()
+        public IServiceCollection AddApplication(IConfiguration configuration)
         {
             var assembly = Assembly.GetExecutingAssembly();
 

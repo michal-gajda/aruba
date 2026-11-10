@@ -15,12 +15,14 @@ public static class Program
             ContentRootPath = AppContext.BaseDirectory,
         });
 
+        builder.AddServiceDefaults();
+
         builder.Services.AddWindowsService(options =>
         {
             options.ServiceName = "Aruba";
         });
 
-        builder.Services.AddApplication();
+        builder.Services.AddApplication(builder.Configuration);
         builder.Services.AddInfrastructure(builder.Configuration);
 
         builder.Services.AddControllers();
@@ -32,6 +34,8 @@ public static class Program
         {
             app.MapOpenApi();
         }
+
+        app.MapDefaultEndpoints();
 
         app.UseAuthorization();
 

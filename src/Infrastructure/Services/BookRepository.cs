@@ -2,8 +2,8 @@
 
 using System.Collections.Concurrent;
 
-using Aruba.Domain.Entities;
-using Aruba.Domain.Interfaces;
+using Domain.Entities;
+using Domain.Interfaces;
 
 internal sealed class BookRepository(ConcurrentDictionary<BookId, BookEntity> dictionary) : IBookRepository
 {

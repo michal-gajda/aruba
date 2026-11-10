@@ -5,8 +5,15 @@
     <Project Path="src/Application/Aruba.Application.csproj" />
     <Project Path="src/Domain/Aruba.Domain.csproj" />
     <Project Path="src/Infrastructure/Aruba.Infrastructure.csproj" />
+    <Project Path="src/ServiceDefaults/Aruba.ServiceDefaults.csproj" />
     <Project Path="src/WebApi/Aruba.WebApi.csproj" />
   </Folder>
+  <Folder Name="/src/AppHost/">
+    <Project Path="src/AppHost/Aruba.AppHost.csproj" />
+  </Folder>
+  <Folder Name="/src/CodeStyle/" />
+  <Folder Name="/src/CodeStyle/CodeFixes/" />
+  <Folder Name="/src/WebApi/" />
   <Folder Name="/tests/">
     <Project Path="tests/CodeStyle.Tests/Aruba.CodeStyle.Tests.csproj" />
     <Project Path="tests/Application.FunctionalTests/Aruba.Application.FunctionalTests.csproj" />

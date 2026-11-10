@@ -41,3 +41,14 @@ dotnet add tests/Application.FunctionalTests package Microsoft.Extensions.Loggin
 dotnet add tests/Application.FunctionalTests package Microsoft.Extensions.Logging.Debug
 dotnet add tests/Application.FunctionalTests package Shouldly
 ```
+
+## .NET Aspire
+
+```powershell
+dotnet new aspire-apphost --framework net10.0 --no-https --output src/AppHost --name Aruba.AppHost
+```
+
+```powershell
+dotnet new aspire-servicedefaults --framework net10.0 --output src/ServiceDefaults --name Aruba.ServiceDefaults
+dotnet add src/WebApi reference src/ServiceDefaults
+```

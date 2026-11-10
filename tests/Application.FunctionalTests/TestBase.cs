@@ -24,7 +24,7 @@ public abstract class TestBase
         services.AddSingleton<IConfiguration>(configuration);
         services.AddLogging();
 
-        services.AddApplication();
+        services.AddApplication(configuration);
         services.AddInfrastructure(configuration);
 
         this.ServiceProvider = services.BuildServiceProvider();
